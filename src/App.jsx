@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import ResumePDF from "./assets/Saran_Raj_Saravanan_Resume.pdf";
 import "./index.css";
 
 const SunIcon = () => (
@@ -59,11 +60,33 @@ const ArrowUpIcon = () => (
   </svg>
 );
 
+const FileTextIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <line x1="10" y1="9" x2="8" y2="9" />
+  </svg>
+);
+
+const DownloadIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const currentRef = ref.current;
+
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -73,9 +96,13 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
       },
       { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
-    if (ref.current) observer.observe(ref.current);
+
+    observer.observe(currentRef);
+
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
     };
   }, []);
 
@@ -91,22 +118,25 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
 };
 
 const App = () => {
-  const [theme, setTheme] = useState("dark");
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  useEffect(() => {
+  const [theme, setTheme] = useState(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
+    if (saved) return saved;
+
     const prefersLight =
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: light)").matches;
-    const initial = saved || (prefersLight ? "light" : "dark");
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
+    return prefersLight ? "light" : "dark";
+  });
+
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
 
     const handleScroll = () => setShowBackToTop(window.scrollY > 400);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [theme]);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -259,6 +289,22 @@ const App = () => {
         },
       ],
     },
+    {
+      title: "Dev Tools",
+      tech: ["Angular", "TypeScript", "RxJS", "SCSS"],
+      description:
+        "Responsive Angular 20 utility suite with standalone components and lazy-loaded routes, featuring a searchable developer cheat sheet (Java, Spring Boot, Python, FastAPI, Git, SQL, and more), a JSON prettify/minify/validate formatter, and a Unicode-safe Base64 encoder/decoder — fully client-side with no backend.",
+      links: [
+        {
+          label: "Live Demo",
+          url: "https://saravanansaranraj27.github.io/dev-tools/",
+        },
+        {
+          label: "Code",
+          url: "https://github.com/saravanansaranraj27/dev-tools",
+        },
+      ],
+    },
   ];
 
   const education = [
@@ -377,7 +423,6 @@ const App = () => {
                 <LinkedInIcon />
                 LinkedIn
               </a>
-              {/* GitHub Icon removed from here */}
             </div>
           </Reveal>
 
@@ -396,6 +441,21 @@ const App = () => {
                 rel="noopener noreferrer"
               >
                 <GitHubIcon /> View GitHub
+              </a>
+              <a
+                className="btn btn-ghost"
+                href={ResumePDF}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FileTextIcon /> View Resume
+              </a>
+              <a
+                className="btn btn-ghost"
+                href={ResumePDF}
+                download="Saran_Raj_Saravanan_Resume.pdf"
+              >
+                <DownloadIcon /> Download Resume
               </a>
             </div>
           </Reveal>
