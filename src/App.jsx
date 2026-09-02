@@ -465,6 +465,14 @@ const App = () => {
               </a>
               <a
                 className="btn btn-ghost"
+                href="https://github.com/saravanansaranraj27/portfolio-website"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon /> View Portfolio Code
+              </a>
+              <a
+                className="btn btn-ghost"
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"

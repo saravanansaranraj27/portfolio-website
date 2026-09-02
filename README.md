@@ -1,159 +1,129 @@
-# Saran Raj Saravanan — Developer Portfolio
+---
 
-> A responsive personal portfolio showcasing professional experience, technical skills, projects, education, and certifications.
+# Saran Raj Saravanan | Portfolio Website
+[![Status](https://img.shields.io/badge/Status-Open%20to%20Work-brightgreen?style=for-the-badge)](mailto:ssaranraj15102021@gmail.com)
 
 [![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0f766e.svg)](#license)
 
-This is a responsive developer portfolio built with React and Vite. It presents professional experience, technical skills, projects, education, certifications, and contact information in a modern single-page layout.
+> A modern, responsive, and performance-optimized personal portfolio showcasing my journey as a **Java Full Stack Developer**. Built with React and Vite, featuring dynamic theming, smooth scroll animations, and a clean architectural design.
 
-The portfolio includes dark/light theme support, smooth scrolling, scroll-based reveal animations, responsive navigation, contact links, project highlights, and a back-to-top control.
+### 🌐 [Live Demo](https://saravanansaranraj27.github.io/portfolio)
 
-## Contents
+---
 
-- [Features](#features)
-- [Portfolio Sections](#portfolio-sections)
-- [Quick Start](#quick-start)
-- [Using the Portfolio](#using-the-portfolio)
-- [Project Structure](#project-structure)
-- [Technology](#technology)
-- [Development Commands](#development-commands)
-- [Customization](#customization)
-- [Limitations](#limitations)
-- [Contributing](#contributing)
-- [License](#license)
+## 🚀 Features
 
-## Features
+- **Dynamic Theming:** Seamless Dark/Light mode toggle with persistent local storage preference and system detection.
+- **Performance Optimized:** Built with **Vite** for instant HMR and optimized production bundles.
+- **Smooth Animations:** Custom `IntersectionObserver` hook for scroll-triggered reveal effects without heavy external libraries.
+- **Responsive Design:** Mobile-first CSS architecture using CSS Variables for consistent theming across devices.
+- **Interactive UI:** Hover effects, ambient background gradients, and glassmorphism elements.
+- **Resume Integration:** Direct view and download functionality for PDF resume.
 
-| Area           | Capabilities                                                            |
-| -------------- | ----------------------------------------------------------------------- |
-| Hero           | Name, professional title, location, email, phone, LinkedIn, and GitHub  |
-| About          | Professional summary highlighting development and automation experience |
-| Skills         | Categorized technical skills with interactive skill cards               |
-| Experience     | Professional timeline with categorized achievements                     |
-| Projects       | Project cards with descriptions and technology stacks                   |
-| Education      | Academic qualifications and institutions                                |
-| Certifications | Professional certifications and training                                |
-| Theme          | Persistent dark/light mode using browser `localStorage`                 |
-| Navigation     | Responsive navigation with section anchors                              |
-| Animations     | Intersection Observer-based scroll reveal animations                    |
-| Accessibility  | Keyboard focus indicators and accessible button labels                  |
-| Experience     | Responsive layouts for desktop, tablet, and mobile screens              |
+## 🛠️ Tech Stack
 
-## Portfolio Sections
+| Category          | Technologies                                       |
+| :---------------- | :------------------------------------------------- |
+| **Frontend Core** | React 18, JavaScript (ES6+), Vite                  |
+| **Styling**       | CSS3, CSS Variables, Flexbox/Grid, Media Queries   |
+| **Icons**         | Custom SVG Components (No external icon libraries) |
+| **Deployment**    | GitHub Pages / Netlify / Vercel                    |
 
-### Hero
+## 📂 Project Structure
 
-The hero section introduces:
-
-- Saran Raj Saravanan
-- Java Full Stack Developer
-- Spring Boot
-- React.js
-- Python Automation
-- Chennai, India
-- Email and phone contact
-- LinkedIn profile
-- GitHub profile
-
-It also provides quick actions to contact the developer or view the GitHub profile.
-
-### Professional Summary
-
-The portfolio highlights experience in:
-
-- Java Full Stack Development
-- Spring Boot
-- React.js
-- REST APIs
-- Python automation
-- Incident management
-- Root Cause Analysis
-- DevOps collaboration
-- AWS
-- Microsoft Azure
-
-### Core Skills
-
-The skills section is organized into the following categories:
-
-| Category              | Skills                                               |
-| --------------------- | ---------------------------------------------------- |
-| Programming Languages | Java, Python, JavaScript, TypeScript                 |
-| Backend               | Spring Boot, REST APIs, Microservices, FastAPI       |
-| Frontend              | React.js, HTML5, CSS3                                |
-| Databases             | MySQL, SQLAlchemy                                    |
-| DevOps & Tools        | Git, Kibana, GitHub Copilot, AI Tools                |
-| Cloud & AI            | AWS, Microsoft Azure                                 |
-| Operations            | Incident Management, Root Cause Analysis, Automation |
-
-### Professional Experience
-
-The portfolio includes professional experience as an **Analyst at Capgemini, Chennai**.
-
-Key achievements include:
-
-- Managing and resolving 10+ production incidents monthly.
-- Performing Root Cause Analysis for application and API failures.
-- Developing Python automation scripts to reduce manual effort.
-- Building FastAPI-based issue identification functionality.
-- Creating rules and checks for initial incident triage.
-- Using Kibana, AI tools, and GitHub Copilot for troubleshooting.
-- Automating ticket creation using AI tools.
-- Collaborating with cross-functional teams in an Agile environment.
-
-### Projects
-
-#### Inventory Management Application
-
-A full-stack inventory management system featuring:
-
-- FastAPI backend
-- SQLAlchemy
-- MySQL
-- React frontend
-- CRUD operations
-- Responsive user interface
-- Scalable backend APIs
-- Secure data handling
-
-#### Task Manager Application
-
-A task management application built with:
-
-- React
-- JavaScript
-- Vite
-- React Context API
-- Custom React hooks
-- Authentication
-- Admin panel
-- Task management functionality
-
-### Education
-
-| Qualification               | Institution                              | Period    |
-| --------------------------- | ---------------------------------------- | --------- |
-| M.B.A. — Systems Management | Bharathidasan University, India          | 2023–2026 |
-| B.E. — Civil Engineering    | Mepco Schlenk Engineering College, India | 2019–2023 |
-
-### Certifications
-
-- Microsoft Azure AI Fundamentals (AI-900)
-- GitHub Copilot Training
-
-## Quick Start
-
-### Requirements
-
-- Node.js 18 or newer
-- npm
-
-### Run Locally
-
-Clone the repository and install the dependencies:
-
-```sh
-npm install
+```text
+src/
+├── assets/
+│   └── Saran_Raj_Saravanan_Resume.pdf   # Resume file
+├── App.jsx                              # Main component & data structure
+├── index.css                            # Global styles, themes, and animations
+└── main.jsx                             # Entry point
 ```
+
+## 🏗️ Installation & Setup
+
+To run this project locally, ensure you have **Node.js** installed.
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/saravanansaranraj27/portfolio.git
+    cd portfolio
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server:**
+
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
+
+## 🎨 Customization
+
+This portfolio is designed to be easily customizable. You can update your personal details by modifying the `personalInfo`, `skills`, `experience`, and `projects` objects inside `src/App.jsx`.
+
+**Example: Updating Projects**
+
+```javascript
+const projects = [
+  {
+    title: "Your Project Name",
+    tech: ["React", "Spring Boot"],
+    description: "Brief description of the project.",
+    links: [
+      { label: "Code", url: "https://github.com/your-repo" },
+      { label: "Live", url: "https://your-live-demo.com" },
+    ],
+  },
+];
+```
+
+## 📄 Resume
+
+You can view or download my latest resume directly from the portfolio or via the link below:
+[📥 Download Resume PDF](./src/assets/Saran_Raj_Saravanan_Resume.pdf)
+
+## 👨‍💻 About Me
+
+I am a **Java Full Stack Developer** based in Chennai, India, with expertise in building scalable web applications using **Spring Boot**, **React.js**, and **Python Automation**. I have recently completed my M.B.A. in Systems Management and am currently open to new opportunities where I can leverage my technical skills and strategic management insights.
+
+- **Backend:** Spring Boot, Microservices, FastAPI, REST APIs
+- **Frontend:** React.js, Angular, HTML5, CSS3
+- **Cloud & DevOps:** AWS, Azure, Git, Kibana, CI/CD
+- **Experience:** Proven track record in incident management, automation, and full-stack development
+
+## 🔗 Connect With Me
+
+<p align="left">
+  <a href="https://linkedin.com/in/saran-raj-saravanan" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/saravanansaranraj27" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="mailto:ssaranraj15102021@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+  </a>
+</p>
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by <strong>Saran Raj Saravanan</strong></sub>
+  <br/>
+  <sub>© 2026 All Rights Reserved.</sub>
+</div>
