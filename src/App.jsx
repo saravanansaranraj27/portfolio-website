@@ -318,6 +318,22 @@ const App = () => {
         },
       ],
     },
+    {
+      title: "Web Tools Pro",
+      tech: ["React", "Vite", "JavaScript", "CSS3"],
+      description:
+        "A high-performance, privacy-first developer utility suite built entirely client-side. Features a custom regex-based Markdown parser with real-time preview (supporting tables, badges, and code blocks), a password strength analyzer, website status checker, and text analytics. Designed with a dynamic violet/purple theme system, ambient CSS animations, and zero external UI dependencies.",
+      links: [
+        {
+          label: "Live Demo",
+          url: "https://saravanansaranraj27.github.io/web-tools-pro/", // Update this if your GitHub Pages URL is different
+        },
+        {
+          label: "Code",
+          url: "https://github.com/saravanansaranraj27/web-tools-pro",
+        },
+      ],
+    },
   ];
 
   const education = [
