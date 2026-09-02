@@ -171,18 +171,31 @@ const App = () => {
     },
     {
       category: "Backend",
-      items: ["Spring Boot", "REST APIs", "Microservices", "FastAPI"],
+      items: [
+        "Spring Boot",
+        "Spring Security",
+        "REST APIs",
+        "Microservices",
+        "FastAPI",
+      ],
     },
-    { category: "Frontend", items: ["React.js", "HTML5", "CSS3"] },
+    { category: "Frontend", items: ["React.js", "Angular", "HTML5", "CSS3"] },
     { category: "Databases", items: ["MySQL", "SQLAlchemy"] },
     {
-      category: "DevOps & Tools",
-      items: ["Git", "Kibana", "GitHub Copilot", "AI Tools"],
+      category: "Cloud Platforms",
+      items: ["AWS", "Microsoft Azure"],
     },
-    { category: "Cloud & AI", items: ["AWS", "Microsoft Azure"] },
     {
-      category: "Operations",
-      items: ["Incident Management", "Root Cause Analysis", "Automation"],
+      category: "Tools & Practices",
+      items: [
+        "Git",
+        "Kibana",
+        "GitHub Copilot",
+        "Incident Management",
+        "Root Cause Analysis",
+        "Automation",
+        "Agile",
+      ],
     },
   ];
 
