@@ -1,7 +1,7 @@
 ---
 
 # Saran Raj Saravanan | Portfolio Website
-[![Status](https://img.shields.io/badge/Status-Open%20to%20Work-brightgreen?style=for-the-badge)](mailto:ssaranraj15102021@gmail.com)
+[![Status: Open to Work](https://img.shields.io/badge/Status-Open_to_Work-brightgreen)](mailto:ssaranraj15102021@gmail.com)
 
 [![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)](https://vitejs.dev/)
