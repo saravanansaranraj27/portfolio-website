@@ -326,7 +326,7 @@ const App = () => {
       links: [
         {
           label: "Live Demo",
-          url: "https://saravanansaranraj27.github.io/web-tools-pro/", // Update this if your GitHub Pages URL is different
+          url: "https://saravanansaranraj27.github.io/web-tools-pro/",
         },
         {
           label: "Code",
