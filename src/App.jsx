@@ -346,6 +346,22 @@ const App = () => {
         },
       ],
     },
+    {
+      title: "PRISM Dashboard",
+      tech: ["Angular", "Angular Material", "ngx-charts", "TypeScript", "SCSS"],
+      description:
+        "Behavioral-finance analytics dashboard visualizing small-cap stability trends, SCARF neurocognitive bias metrics, and SEBI compliance indicators. Built with Angular 20 standalone components, featuring a live SCI trend chart, SCARF polar radar, dark/light theming, and one-click CSV export — the technical companion to an MBA research project on redemption-risk interception in mutual funds.",
+      links: [
+        {
+          label: "Live Demo",
+          url: "https://saravanansaranraj27.github.io/prism-dashboard/",
+        },
+        {
+          label: "Code",
+          url: "https://github.com/saravanansaranraj27/prism-dashboard",
+        },
+      ],
+    },
   ];
 
   const education = [
