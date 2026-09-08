@@ -668,7 +668,7 @@ const App = () => {
       <section id="certifications" className="section">
         <div className="container">
           <Reveal>
-            <h2>Certifications</h2>
+            <h2>Certifications & Trainings</h2>
           </Reveal>
           <div className="timeline">
             {certifications.map((cert, index) => (
