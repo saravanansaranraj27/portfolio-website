@@ -54,6 +54,14 @@ const GitHubIcon = () => (
   </svg>
 );
 
+const ExternalLinkIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
+
 const ArrowUpIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
@@ -78,13 +86,40 @@ const DownloadIcon = () => (
   </svg>
 );
 
+const CopyIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+const MenuIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const currentRef = ref.current;
-
     if (!currentRef) return;
 
     const observer = new IntersectionObserver(
@@ -98,11 +133,8 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
     );
 
     observer.observe(currentRef);
-
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
@@ -117,11 +149,24 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
   );
 };
 
+const PageLoader = () => (
+  <div className="page-loader">
+    <div className="loader-content">
+      <div className="skeleton-header"></div>
+      <div className="skeleton-subtitle"></div>
+      <div className="skeleton-grid">
+        <div className="skeleton-card"></div>
+        <div className="skeleton-card"></div>
+      </div>
+    </div>
+  </div>
+);
+
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
     if (saved) return saved;
-
     const prefersLight =
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: light)").matches;
@@ -129,14 +174,41 @@ const App = () => {
   });
 
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-
     const handleScroll = () => setShowBackToTop(window.scrollY > 400);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [theme]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+    return () => sections.forEach((section) => observer.unobserve(section));
+  }, []);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -144,6 +216,18 @@ const App = () => {
     document.documentElement.setAttribute("data-theme", next);
     window.localStorage.setItem("portfolio-theme", next);
   };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("ssaranraj15102021@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email", err);
+    }
+  };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -181,10 +265,7 @@ const App = () => {
     },
     { category: "Frontend", items: ["React.js", "Angular", "HTML5", "CSS3"] },
     { category: "Databases", items: ["MySQL", "SQLAlchemy"] },
-    {
-      category: "Cloud Platforms",
-      items: ["AWS", "Microsoft Azure"],
-    },
+    { category: "Cloud Platforms", items: ["AWS", "Microsoft Azure"] },
     {
       category: "Tools & Practices",
       items: [
@@ -250,15 +331,17 @@ const App = () => {
       title: "Event Booking System",
       tech: ["Spring Boot", "Spring Security", "MySQL", "React", "JWT"],
       description:
-        "Full-stack event booking platform with JWT authentication and role-based access control. Includes event listing CRUD, booking management, an admin dashboard, and a calendar view, built with a Spring Boot REST API and a React (Vite) frontend.",
+        "Full-stack event booking platform with JWT authentication and role-based access control. Includes event listing CRUD, booking management, an admin dashboard, and a calendar view.",
       links: [
         {
           label: "Frontend",
           url: "https://github.com/saravanansaranraj27/booking-app-frontend",
+          type: "code",
         },
         {
           label: "Backend",
           url: "https://github.com/saravanansaranraj27/booking-app-backend",
+          type: "code",
         },
       ],
     },
@@ -271,6 +354,7 @@ const App = () => {
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/inventory-management-app",
+          type: "code",
         },
       ],
     },
@@ -278,11 +362,12 @@ const App = () => {
       title: "TaskFlow",
       tech: ["React", "Go", "MySQL", "Vite"],
       description:
-        "Full-stack productivity workspace with a React (Vite) frontend and a Go + MySQL backend. Includes task management with status filtering, colorful quick notes, goal tracking with progress sliders, account authentication, and a unified dashboard with light/dark theme support.",
+        "Full-stack productivity workspace with a React (Vite) frontend and a Go + MySQL backend. Includes task management, colorful quick notes, goal tracking, and account authentication.",
       links: [
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/task-flow",
+          type: "code",
         },
       ],
     },
@@ -295,6 +380,7 @@ const App = () => {
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/task-manager-inventory",
+          type: "code",
         },
       ],
     },
@@ -307,10 +393,12 @@ const App = () => {
         {
           label: "Live Demo",
           url: "https://saravanansaranraj27.github.io/blood-donation-tracker/",
+          type: "live",
         },
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/blood-donation-tracker",
+          type: "code",
         },
       ],
     },
@@ -318,15 +406,17 @@ const App = () => {
       title: "Dev Tools",
       tech: ["Angular", "TypeScript", "RxJS", "SCSS"],
       description:
-        "Responsive Angular 20 utility suite with standalone components and lazy-loaded routes, featuring a searchable developer cheat sheet (Java, Spring Boot, Python, FastAPI, Git, SQL, and more), a JSON prettify/minify/validate formatter, and a Unicode-safe Base64 encoder/decoder — fully client-side with no backend.",
+        "Responsive Angular 20 utility suite with standalone components, featuring a searchable developer cheat sheet, JSON formatter, and Base64 encoder.",
       links: [
         {
           label: "Live Demo",
           url: "https://saravanansaranraj27.github.io/dev-tools/",
+          type: "live",
         },
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/dev-tools",
+          type: "code",
         },
       ],
     },
@@ -334,15 +424,17 @@ const App = () => {
       title: "Web Tools Pro",
       tech: ["React", "Vite", "JavaScript", "CSS3"],
       description:
-        "A high-performance, privacy-first developer utility suite built entirely client-side. Features a custom regex-based Markdown parser with real-time preview (supporting tables, badges, and code blocks), a password strength analyzer, website status checker, and text analytics. Designed with a dynamic violet/purple theme system, ambient CSS animations, and zero external UI dependencies.",
+        "A high-performance, privacy-first developer utility suite built entirely client-side. Features Markdown parser, password strength analyzer, and text analytics.",
       links: [
         {
           label: "Live Demo",
           url: "https://saravanansaranraj27.github.io/web-tools-pro/",
+          type: "live",
         },
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/web-tools-pro",
+          type: "code",
         },
       ],
     },
@@ -350,15 +442,17 @@ const App = () => {
       title: "PRISM Dashboard",
       tech: ["Angular", "Angular Material", "ngx-charts", "TypeScript", "SCSS"],
       description:
-        "Behavioral-finance analytics dashboard visualizing small-cap stability trends, SCARF neurocognitive bias metrics, and SEBI compliance indicators. Built with Angular 20 standalone components, featuring a live SCI trend chart, SCARF polar radar, dark/light theming, and one-click CSV export — the technical companion to an MBA research project on redemption-risk interception in mutual funds.",
+        "Behavioral-finance analytics dashboard visualizing small-cap stability trends, SCARF neurocognitive bias metrics, and SEBI compliance indicators.",
       links: [
         {
           label: "Live Demo",
           url: "https://saravanansaranraj27.github.io/prism-dashboard/",
+          type: "live",
         },
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/prism-dashboard",
+          type: "code",
         },
       ],
     },
@@ -373,7 +467,7 @@ const App = () => {
         {
           tag: "RESEARCH",
           chip: "chip-rca",
-          text: "PRISM Project: Conducted research-based analysis on mutual fund redemption behavior and liquidity risk using DeepSeek AI for predictive insights.",
+          text: "PRISM Project: Conducted research-based analysis on mutual fund redemption behavior and liquidity risk using DeepSeek AI.",
         },
         {
           tag: "ANALYSIS",
@@ -426,32 +520,73 @@ const App = () => {
     },
   ];
 
+  if (isLoading) {
+    return <PageLoader />;
+  }
+
   return (
     <div className="app-container">
       <div className="topbar">
         <div className="topbar-inner">
           <span className="brand">Saran Raj Saravanan</span>
+
           <nav className="desktop-nav">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="nav-link">
+              <a
+                key={link.name}
+                href={link.href}
+                className={`nav-link ${activeSection === link.href.substring(1) ? "active" : ""}`}
+              >
                 {link.name}
               </a>
             ))}
           </nav>
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-          </button>
+
+          <div className="topbar-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </button>
+
+            <button
+              className="mobile-menu-toggle"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </div>
+
+        <div className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
+          <nav>
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`mobile-nav-link ${activeSection === link.href.substring(1) ? "active" : ""}`}
+                onClick={closeMobileMenu}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
 
       <header className="hero">
         <div className="container">
           <Reveal>
-            <h1>{personalInfo.name}</h1>
+            <div className="hero-header-group">
+              <h1>{personalInfo.name}</h1>
+              <span className="open-to-work-badge">
+                <span className="badge-dot"></span>
+                Open to Work
+              </span>
+            </div>
           </Reveal>
           <Reveal delay={100}>
             <p className="subtitle">{personalInfo.title}</p>
@@ -463,10 +598,22 @@ const App = () => {
                 <PinIcon />
                 {personalInfo.location}
               </span>
-              <a className="link-email" href={`mailto:${personalInfo.email}`}>
-                <MailIcon />
-                {personalInfo.email}
-              </a>
+
+              <div className="email-copy-group">
+                <a className="link-email" href={`mailto:${personalInfo.email}`}>
+                  <MailIcon />
+                  {personalInfo.email}
+                </a>
+                <button
+                  className="copy-btn"
+                  onClick={copyEmail}
+                  title="Copy email address"
+                  aria-label="Copy email address"
+                >
+                  {emailCopied ? <CheckIcon /> : <CopyIcon />}
+                </button>
+              </div>
+
               <a className="link-phone" href={`tel:${personalInfo.phone}`}>
                 <PhoneIcon />
                 {personalInfo.phone}
@@ -622,9 +769,14 @@ const App = () => {
                           href={l.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="project-link"
+                          className={`project-link ${l.type === "live" ? "link-live" : "link-code"}`}
                         >
-                          <GitHubIcon /> {l.label}
+                          {l.type === "live" ? (
+                            <ExternalLinkIcon />
+                          ) : (
+                            <GitHubIcon />
+                          )}
+                          {l.label}
                         </a>
                       ))}
                     </div>
