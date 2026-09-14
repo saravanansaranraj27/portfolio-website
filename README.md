@@ -1,13 +1,11 @@
----
-
 # Saran Raj Saravanan | Portfolio Website
-[![Status: Open to Work](https://img.shields.io/badge/Status-Open_to_Work-brightgreen)](mailto:ssaranraj15102021@gmail.com)
 
+[![Status: Open to Work](https://img.shields.io/badge/Status-Open_to_Work-brightgreen)](mailto:ssaranraj15102021@gmail.com)
 [![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0f766e.svg)](#license)
 
-> A modern, responsive, and performance-optimized personal portfolio showcasing my journey as a **Java Full Stack Developer**. Built with React and Vite, featuring dynamic theming, smooth scroll animations, and a clean architectural design.
+> A modern, responsive, and performance-optimized personal portfolio showcasing my journey as a **Java Full Stack Developer**. Built with React and Vite, featuring dynamic theming, smooth scroll animations, custom SVG iconography, and a clean architectural design.
 
 ### 🌐 [Live Demo](https://saravanansaranraj27.github.io/portfolio-website)
 
@@ -17,19 +15,22 @@
 
 - **Dynamic Theming:** Seamless Dark/Light mode toggle with persistent local storage preference and system detection.
 - **Performance Optimized:** Built with **Vite** for instant HMR and optimized production bundles.
-- **Smooth Animations:** Custom `IntersectionObserver` hook for scroll-triggered reveal effects without heavy external libraries.
+- **Smooth Animations:** Custom `IntersectionObserver` hook (`Reveal` component) for scroll-triggered reveal effects without heavy external libraries.
 - **Responsive Design:** Mobile-first CSS architecture using CSS Variables for consistent theming across devices.
-- **Interactive UI:** Hover effects, ambient background gradients, and glassmorphism elements.
+- **Interactive UI:** Hover effects, ambient background gradients, glassmorphism elements, and copy-to-clipboard functionality.
 - **Resume Integration:** Direct view and download functionality for PDF resume.
+- **Zero External Icons:** Fully custom SVG icon system implemented directly in JSX.
+- **Active Section Tracking:** Navigation highlights update automatically based on scroll position.
 
 ## 🛠️ Tech Stack
 
-| Category          | Technologies                                       |
-| :---------------- | :------------------------------------------------- |
-| **Frontend Core** | React 18, JavaScript (ES6+), Vite                  |
-| **Styling**       | CSS3, CSS Variables, Flexbox/Grid, Media Queries   |
-| **Icons**         | Custom SVG Components (No external icon libraries) |
-| **Deployment**    | GitHub Pages                                       |
+| Category          | Technologies                                                    |
+| :---------------- | :-------------------------------------------------------------- |
+| **Frontend Core** | React 18, JavaScript (ES6+), Vite                               |
+| **Styling**       | CSS3, CSS Variables, Flexbox/Grid, Media Queries                |
+| **Icons**         | Custom SVG Components (No external icon libraries)              |
+| **State Mgmt**    | React Hooks (useState, useEffect, useRef, IntersectionObserver) |
+| **Deployment**    | GitHub Pages                                                    |
 
 ## 📂 Project Structure
 
@@ -37,7 +38,8 @@
 src/
 ├── assets/
 │   └── Saran_Raj_Saravanan_Resume.pdf   # Resume file
-├── App.jsx                              # Main component & data structure
+├── App.jsx                              # Main component, data structure & logic
+├── Icons.jsx                            # Custom SVG icon components
 ├── index.css                            # Global styles, themes, and animations
 └── main.jsx                             # Entry point
 ```
@@ -48,46 +50,46 @@ To run this project locally, ensure you have **Node.js** installed.
 
 1.  **Clone the repository:**
 
-```bash
+    ```bash
     git clone https://github.com/saravanansaranraj27/portfolio.git
     cd portfolio
-```
+    ```
 
 2.  **Install dependencies:**
 
-```bash
+    ```bash
     npm install
-```
+    ```
 
 3.  **Install `gh-pages` (for GitHub Pages deployment):**
 
-```bash
+    ```bash
     npm install --save-dev gh-pages
-```
+    ```
 
 4.  **Start the development server:**
 
-```bash
+    ```bash
     npm run dev
-```
+    ```
 
     Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 5.  **Build for production:**
 
-```bash
+    ```bash
     npm run build
-```
+    ```
 
 6.  **Deploy to GitHub Pages:**
 
-```bash
+    ```bash
     npm run deploy
-```
+    ```
 
 ## 🎨 Customization
 
-This portfolio is designed to be easily customizable. You can update your personal details by modifying the `personalInfo`, `skills`, `experience`, and `projects` objects inside `src/App.jsx`.
+This portfolio is designed to be easily customizable. You can update your personal details by modifying the `personalInfo`, `skills`, `experience`, `projects`, `education`, and `certifications` objects inside `src/App.jsx`.
 
 **Example: Updating Projects**
 
@@ -98,11 +100,22 @@ const projects = [
     tech: ["React", "Spring Boot"],
     description: "Brief description of the project.",
     links: [
-      { label: "Code", url: "https://github.com/your-repo" },
-      { label: "Live", url: "https://your-live-demo.com" },
+      { label: "Code", url: "https://github.com/your-repo", type: "code" },
+      { label: "Live", url: "https://your-live-demo.com", type: "live" },
     ],
   },
 ];
+```
+
+**Example: Adding a New Skill Icon**
+
+Update the `TECH_META` object at the top of `App.jsx`:
+
+```javascript
+const TECH_META = {
+  // ... existing skills
+  "New Technology": { color: "#hexcode", Icon: YourCustomIcon },
+};
 ```
 
 ## 📄 Resume
@@ -117,7 +130,7 @@ I am a **Java Full Stack Developer** based in Dindigul, India, with expertise in
 - **Backend:** Spring Boot, Microservices, FastAPI, REST APIs, Go
 - **Frontend:** React.js, Angular, HTML5, CSS3
 - **Cloud & DevOps:** AWS, Azure, Git, Kibana, CI/CD
-- **Experience:** Proven track record in incident management, automation, and full-stack development
+- **Experience:** Proven track record in incident management, automation, and full-stack development at Capgemini
 
 ## 🔗 Connect With Me
 
