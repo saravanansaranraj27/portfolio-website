@@ -679,7 +679,7 @@ const App = () => {
           <Reveal>
             <h2>Professional Summary</h2>
             <p className="summary-text">
-              Java Full Stack Developer with 1.83 years of experience across
+              Java Full Stack Developer with 1.5+ years of experience across
               application development, systems analysis, and automation. Strong
               in Spring Boot, React.js, REST APIs, and Python scripting to
               improve system reliability, performance, and scalability, with a
