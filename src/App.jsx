@@ -1,118 +1,144 @@
 import { useEffect, useState, useRef } from "react";
 import ResumePDF from "./assets/Saran_Raj_Saravanan_Resume.pdf";
+import {
+  SunIcon,
+  MoonIcon,
+  PinIcon,
+  MailIcon,
+  PhoneIcon,
+  LinkedInIcon,
+  GitHubIcon,
+  ExternalLinkIcon,
+  ArrowUpIcon,
+  FileTextIcon,
+  DownloadIcon,
+  CopyIcon,
+  CheckIcon,
+  MenuIcon,
+  CloseIcon,
+  CodeIcon,
+  ServerIcon,
+  ShieldIcon,
+  PlugIcon,
+  WindowIcon,
+  DatabaseIcon,
+  CloudIcon,
+  GitBranchIcon,
+  ActivityIcon,
+  SparkleIcon,
+  AlertIcon,
+  TargetIcon,
+  BoltIcon,
+  RefreshIcon,
+  KeyIcon,
+  WaveIcon,
+  PaletteIcon,
+  BarChartIcon,
+  UsersIcon,
+  FlaskIcon,
+  CpuIcon,
+  BriefcaseIcon,
+} from "./Icons.jsx";
 import "./index.css";
 
-const SunIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="4.5" />
-    <path
-      strokeLinecap="round"
-      d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
-    />
-  </svg>
-);
+const TECH_META = {
+  Java: { color: "#f8981d", Icon: CodeIcon },
+  Python: { color: "#3776ab", Icon: CodeIcon },
+  JavaScript: { color: "#e8c547", Icon: CodeIcon },
+  TypeScript: { color: "#3178c6", Icon: CodeIcon },
+  Go: { color: "#00add8", Icon: CodeIcon },
+  "Spring Boot": { color: "#6db33f", Icon: ServerIcon },
+  "Spring Security": { color: "#6db33f", Icon: ShieldIcon },
+  "REST APIs": { color: "#a78bfa", Icon: PlugIcon },
+  Microservices: { color: "#8b5cf6", Icon: PlugIcon },
+  FastAPI: { color: "#059669", Icon: ServerIcon },
+  "React.js": { color: "#58c4dc", Icon: WindowIcon },
+  React: { color: "#58c4dc", Icon: WindowIcon },
+  Angular: { color: "#dd0031", Icon: WindowIcon },
+  HTML5: { color: "#e34f26", Icon: WindowIcon },
+  CSS3: { color: "#2f8fce", Icon: WindowIcon },
+  MySQL: { color: "#4479a1", Icon: DatabaseIcon },
+  SQLAlchemy: { color: "#d34a3f", Icon: DatabaseIcon },
+  AWS: { color: "#ff9900", Icon: CloudIcon },
+  "Microsoft Azure": { color: "#0078d4", Icon: CloudIcon },
+  Git: { color: "#f05032", Icon: GitBranchIcon },
+  Kibana: { color: "#00bfb3", Icon: ActivityIcon },
+  "GitHub Copilot": { color: "#8957e5", Icon: SparkleIcon },
+  "Incident Management": { color: "#f2665a", Icon: AlertIcon },
+  "Root Cause Analysis": { color: "#f5a623", Icon: TargetIcon },
+  Automation: { color: "#2dd4bf", Icon: BoltIcon },
+  Agile: { color: "#22c55e", Icon: RefreshIcon },
+  JWT: { color: "#d63aff", Icon: KeyIcon },
+  Vite: { color: "#8a67f8", Icon: BoltIcon },
+  RxJS: { color: "#b7178c", Icon: WaveIcon },
+  SCSS: { color: "#cd6799", Icon: PaletteIcon },
+  "Angular Material": { color: "#dd0031", Icon: PaletteIcon },
+  "ngx-charts": { color: "#a855f7", Icon: BarChartIcon },
+};
 
-const MoonIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7Z"
-    />
-  </svg>
-);
+const CHIP_ICONS = {
+  INCIDENT: AlertIcon,
+  AUTOMATION: BoltIcon,
+  RCA: TargetIcon,
+  TEAM: UsersIcon,
+  RESEARCH: FlaskIcon,
+  ANALYSIS: BarChartIcon,
+  IOT: CpuIcon,
+  DEV: CodeIcon,
+  CLOUD: CloudIcon,
+  "AI TOOLS": SparkleIcon,
+};
 
-const PinIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 21s-6.5-6.06-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.94-6.5 11-6.5 11Z" />
-    <circle cx="12" cy="10" r="2.3" />
-  </svg>
-);
+const TechButton = ({ label }) => {
+  const meta = TECH_META[label] || {
+    color: "#8592ad",
+    Icon: CodeIcon,
+  };
 
-const MailIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="3" y="5" width="18" height="14" rx="2" />
-    <path d="m4 7 8 6 8-6" />
-  </svg>
-);
+  const { color, Icon } = meta;
 
-const PhoneIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M6.6 4.5h3l1.2 4-2 1.3a11 11 0 0 0 5.4 5.4l1.3-2 4 1.2v3c0 1-.9 1.8-1.9 1.6a16 16 0 0 1-12.9-12.9c-.2-1 .6-1.9 1.6-1.9Z" />
-  </svg>
-);
+  return (
+    <button
+      type="button"
+      className={`tag-btn ${label === "React.js" || label === "React" ? "react-tag" : ""}`}
+      style={{ "--tag-color": color }}
+    >
+      <Icon />
+      {label}
+    </button>
+  );
+};
 
-const LinkedInIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3.2a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM20.5 20h-3.37v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V20H9.73V8.5h3.24v1.57h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.18V20Z" />
-  </svg>
-);
+const TechBadgeButton = ({ label }) => {
+  const meta = TECH_META[label] || {
+    color: "#8592ad",
+    Icon: CodeIcon,
+  };
 
-const GitHubIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.87c-2.78.6-3.37-1.2-3.37-1.2-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .26.18.58.69.48A10 10 0 0 0 12 2.2Z" />
-  </svg>
-);
+  const { color, Icon } = meta;
 
-const ExternalLinkIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    <polyline points="15 3 21 3 21 9" />
-    <line x1="10" y1="14" x2="21" y2="3" />
-  </svg>
-);
+  return (
+    <button
+      type="button"
+      className={`tech-badge-btn ${label === "React.js" || label === "React" ? "react-tag" : ""}`}
+      style={{ "--tag-color": color }}
+    >
+      <Icon />
+      {label}
+    </button>
+  );
+};
 
-const ArrowUpIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-  </svg>
-);
+const ChipButton = ({ tag, chipClass }) => {
+  const Icon = CHIP_ICONS[tag] || CodeIcon;
 
-const FileTextIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="16" y1="13" x2="8" y2="13" />
-    <line x1="16" y1="17" x2="8" y2="17" />
-    <line x1="10" y1="9" x2="8" y2="9" />
-  </svg>
-);
-
-const DownloadIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-    <polyline points="7 10 12 15 17 10" />
-    <line x1="12" y1="15" x2="12" y2="3" />
-  </svg>
-);
-
-const CopyIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-  </svg>
-);
-
-const CheckIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
-
-const MenuIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
+  return (
+    <button type="button" className={`chip-btn ${chipClass}`}>
+      <Icon />
+      {tag}
+    </button>
+  );
+};
 
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const ref = useRef(null);
@@ -120,6 +146,7 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
 
   useEffect(() => {
     const currentRef = ref.current;
+
     if (!currentRef) return;
 
     const observer = new IntersectionObserver(
@@ -129,12 +156,16 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px",
+      },
     );
 
     observer.observe(currentRef);
+
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
     };
   }, []);
 
@@ -164,78 +195,25 @@ const PageLoader = () => (
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+
   const [theme, setTheme] = useState(() => {
     const saved = window.localStorage.getItem("portfolio-theme");
-    if (saved) return saved;
+
+    if (saved === "light" || saved === "dark") {
+      return saved;
+    }
+
     const prefersLight =
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: light)").matches;
+
     return prefersLight ? "light" : "dark";
   });
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("about");
   const [emailCopied, setEmailCopied] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [theme]);
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach((section) => observer.observe(section));
-    return () => sections.forEach((section) => observer.unobserve(section));
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    window.localStorage.setItem("portfolio-theme", next);
-  };
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText("ssaranraj15102021@gmail.com");
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy email", err);
-    }
-  };
-
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
-
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Education", href: "#education" },
-  ];
 
   const personalInfo = {
     name: "Saran Raj Saravanan",
@@ -247,6 +225,15 @@ const App = () => {
     linkedin: "https://linkedin.com/in/saran-raj-saravanan",
     github: "https://github.com/saravanansaranraj27",
   };
+
+  const navLinks = [
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+    { name: "Education", href: "#education" },
+    { name: "Certifications", href: "#certifications" },
+  ];
 
   const skills = [
     {
@@ -263,9 +250,18 @@ const App = () => {
         "FastAPI",
       ],
     },
-    { category: "Frontend", items: ["React.js", "Angular", "HTML5", "CSS3"] },
-    { category: "Databases", items: ["MySQL", "SQLAlchemy"] },
-    { category: "Cloud Platforms", items: ["AWS", "Microsoft Azure"] },
+    {
+      category: "Frontend",
+      items: ["React.js", "Angular", "HTML5", "CSS3"],
+    },
+    {
+      category: "Databases",
+      items: ["MySQL", "SQLAlchemy"],
+    },
+    {
+      category: "Cloud Platforms",
+      items: ["AWS", "Microsoft Azure"],
+    },
     {
       category: "Tools & Practices",
       items: [
@@ -284,7 +280,8 @@ const App = () => {
     {
       role: "Analyst",
       company: "Capgemini",
-      location: "Chennai, India",
+      client:
+        "Fortune 500 US-based Multinational Telecommunications & Media Conglomerate",
       period: "Jul 2024 – Apr 2026",
       achievements: [
         {
@@ -462,6 +459,7 @@ const App = () => {
     {
       degree: "M.B.A. — Systems Management",
       institution: "Bharathidasan University, India",
+      institutionClass: "bharathidasan-company",
       period: "2023–2026",
       details: [
         {
@@ -479,6 +477,7 @@ const App = () => {
     {
       degree: "B.E. — Civil Engineering",
       institution: "Mepco Schlenk Engineering College, India",
+      institutionClass: "mepco-company",
       period: "2019–2023",
       details: [
         {
@@ -499,6 +498,7 @@ const App = () => {
     {
       title: "Microsoft Azure AI Fundamentals (AI-900)",
       issuer: "Microsoft",
+      issuerClass: "microsoft-company",
       details: [
         {
           tag: "CLOUD",
@@ -510,6 +510,7 @@ const App = () => {
     {
       title: "GitHub Copilot Training",
       issuer: "GitHub",
+      issuerClass: "github-company",
       details: [
         {
           tag: "AI TOOLS",
@@ -520,6 +521,81 @@ const App = () => {
     },
   ];
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setEmailCopied(true);
+
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy email", err);
+    }
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   if (isLoading) {
     return <PageLoader />;
   }
@@ -528,14 +604,16 @@ const App = () => {
     <div className="app-container">
       <div className="topbar">
         <div className="topbar-inner">
-          <span className="brand">Saran Raj Saravanan</span>
+          <span className="brand">{personalInfo.name}</span>
 
           <nav className="desktop-nav">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`nav-link ${activeSection === link.href.substring(1) ? "active" : ""}`}
+                className={`nav-link ${
+                  activeSection === link.href.substring(1) ? "active" : ""
+                }`}
               >
                 {link.name}
               </a>
@@ -546,15 +624,19 @@ const App = () => {
             <button
               className="theme-toggle"
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+              aria-label={`Switch to ${
+                theme === "dark" ? "light" : "dark"
+              } mode`}
+              title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
 
             <button
               className="mobile-menu-toggle"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
@@ -567,7 +649,9 @@ const App = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`mobile-nav-link ${activeSection === link.href.substring(1) ? "active" : ""}`}
+                className={`mobile-nav-link ${
+                  activeSection === link.href.substring(1) ? "active" : ""
+                }`}
                 onClick={closeMobileMenu}
               >
                 {link.name}
@@ -582,28 +666,36 @@ const App = () => {
           <Reveal>
             <div className="hero-header-group">
               <h1>{personalInfo.name}</h1>
+
               <span className="open-to-work-badge">
                 <span className="badge-dot"></span>
                 Open to Work
               </span>
             </div>
           </Reveal>
+
           <Reveal delay={100}>
             <p className="subtitle">{personalInfo.title}</p>
           </Reveal>
 
           <Reveal delay={200}>
             <div className="contact-info">
-              <span>
+              <span className="location-link">
                 <PinIcon />
                 {personalInfo.location}
               </span>
 
               <div className="email-copy-group">
-                <a className="link-email" href={`mailto:${personalInfo.email}`}>
+                <a
+                  className="link-email"
+                  href={`mailto:${personalInfo.email}`}
+                  aria-label={`Email ${personalInfo.email}`}
+                  title={personalInfo.email}
+                >
                   <MailIcon />
-                  {personalInfo.email}
+                  Email
                 </a>
+
                 <button
                   className="copy-btn"
                   onClick={copyEmail}
@@ -614,10 +706,16 @@ const App = () => {
                 </button>
               </div>
 
-              <a className="link-phone" href={`tel:${personalInfo.phone}`}>
+              <a
+                className="link-phone"
+                href={`tel:${personalInfo.phone}`}
+                aria-label={`Call ${personalInfo.phone}`}
+                title={personalInfo.phone}
+              >
                 <PhoneIcon />
-                {personalInfo.phone}
+                Mobile
               </a>
+
               <a
                 className="link-linkedin"
                 href={personalInfo.linkedin}
@@ -633,41 +731,42 @@ const App = () => {
           <Reveal delay={300}>
             <div className="hero-actions">
               <a
-                className="btn btn-primary"
-                href={`mailto:${personalInfo.email}`}
-              >
-                <MailIcon /> Contact me
-              </a>
-              <a
                 className="btn btn-ghost"
                 href="https://github.com/saravanansaranraj27/portfolio-website"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GitHubIcon /> View Portfolio Code
+                <GitHubIcon />
+                Portfolio
               </a>
+
               <a
-                className="btn btn-ghost"
+                className="btn btn-github"
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GitHubIcon /> View GitHub
+                <GitHubIcon />
+                GitHub
               </a>
+
               <a
                 className="btn btn-ghost"
                 href={ResumePDF}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FileTextIcon /> View Resume
+                <FileTextIcon />
+                View Resume
               </a>
+
               <a
                 className="btn btn-ghost"
                 href={ResumePDF}
                 download="Saran_Raj_Saravanan_Resume.pdf"
               >
-                <DownloadIcon /> Download Resume
+                <DownloadIcon />
+                Download Resume
               </a>
             </div>
           </Reveal>
@@ -678,14 +777,17 @@ const App = () => {
         <div className="container">
           <Reveal>
             <h2>Professional Summary</h2>
-            <p className="summary-text">
-              Java Full Stack Developer with 1.5+ years of experience across
-              application development, systems analysis, and automation. Strong
-              in Spring Boot, React.js, REST APIs, and Python scripting to
-              improve system reliability, performance, and scalability, with a
-              track record in incident management, Root Cause Analysis, and
-              DevOps collaboration on AWS and Microsoft Azure.
-            </p>
+
+            <div className="summary-card">
+              <p className="summary-text">
+                Java Full Stack Developer with 1.5+ years of experience across
+                application development, systems analysis, and automation.
+                Strong in Spring Boot, React.js, REST APIs, and Python scripting
+                to improve system reliability, performance, and scalability,
+                with a track record in incident management, Root Cause Analysis,
+                and DevOps collaboration on AWS and Microsoft Azure.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -695,16 +797,16 @@ const App = () => {
           <Reveal>
             <h2>Core Skills</h2>
           </Reveal>
+
           <div className="skills-grid">
             {skills.map((skillGroup, index) => (
               <Reveal key={index} delay={index * 50}>
                 <div className="skill-card">
                   <h3>{skillGroup.category}</h3>
+
                   <div className="tags">
                     {skillGroup.items.map((item, i) => (
-                      <span key={i} className="tag">
-                        {item}
-                      </span>
+                      <TechButton key={i} label={item} />
                     ))}
                   </div>
                 </div>
@@ -719,19 +821,34 @@ const App = () => {
           <Reveal>
             <h2>Professional Experience</h2>
           </Reveal>
+
           <div className="timeline">
             {experience.map((exp, index) => (
               <Reveal key={index} delay={index * 100} className="timeline-item">
                 <div className="experience-card">
-                  <div className="exp-header">
-                    <h3>{exp.role}</h3>
-                    <span className="company">@ {exp.company}</span>
-                    <span className="date">{exp.period}</span>
+                  <div className="exp-header-group">
+                    <div className="exp-header">
+                      <h3>{exp.role}</h3>
+
+                      <span className="company experience-company">
+                        @ {exp.company}
+                      </span>
+
+                      <span className="date">{exp.period}</span>
+                    </div>
+
+                    {exp.client && (
+                      <button type="button" className="client-tag">
+                        <BriefcaseIcon />
+                        {exp.client}
+                      </button>
+                    )}
                   </div>
+
                   <ul className="achievements-list">
                     {exp.achievements.map((a, i) => (
                       <li key={i} className="achievement-row">
-                        <span className={`chip ${a.chip}`}>{a.tag}</span>
+                        <ChipButton tag={a.tag} chipClass={a.chip} />
                         <span className="achievement-text">{a.text}</span>
                       </li>
                     ))}
@@ -748,35 +865,40 @@ const App = () => {
           <Reveal>
             <h2>Projects</h2>
           </Reveal>
+
           <div className="projects-grid">
             {projects.map((project, index) => (
               <Reveal key={index} delay={index * 100}>
                 <div className="project-card">
                   <h3>{project.title}</h3>
+
                   <p>{project.description}</p>
+
                   <div className="tech-stack">
                     {project.tech.map((t, i) => (
-                      <span key={i} className="tech-badge">
-                        {t}
-                      </span>
+                      <TechBadgeButton key={i} label={t} />
                     ))}
                   </div>
+
                   {project.links?.length > 0 && (
                     <div className="project-links">
-                      {project.links.map((l, i) => (
+                      {project.links.map((link, i) => (
                         <a
                           key={i}
-                          href={l.url}
+                          href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`project-link ${l.type === "live" ? "link-live" : "link-code"}`}
+                          className={`project-link ${
+                            link.type === "live" ? "link-live" : "link-code"
+                          }`}
                         >
-                          {l.type === "live" ? (
+                          {link.type === "live" ? (
                             <ExternalLinkIcon />
                           ) : (
                             <GitHubIcon />
                           )}
-                          {l.label}
+
+                          {link.label}
                         </a>
                       ))}
                     </div>
@@ -793,20 +915,26 @@ const App = () => {
           <Reveal>
             <h2>Education</h2>
           </Reveal>
-          <div className="timeline" style={{ marginBottom: "48px" }}>
+
+          <div className="timeline education-timeline">
             {education.map((edu, index) => (
               <Reveal key={index} delay={index * 100} className="timeline-item">
                 <div className="experience-card">
                   <div className="exp-header">
                     <h3>{edu.degree}</h3>
-                    <span className="company">@ {edu.institution}</span>
+
+                    <span className={`company ${edu.institutionClass}`}>
+                      @ {edu.institution}
+                    </span>
+
                     <span className="date">{edu.period}</span>
                   </div>
+
                   <ul className="achievements-list">
-                    {edu.details.map((d, i) => (
+                    {edu.details.map((detail, i) => (
                       <li key={i} className="achievement-row">
-                        <span className={`chip ${d.chip}`}>{d.tag}</span>
-                        <span className="achievement-text">{d.text}</span>
+                        <ChipButton tag={detail.tag} chipClass={detail.chip} />
+                        <span className="achievement-text">{detail.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -822,19 +950,24 @@ const App = () => {
           <Reveal>
             <h2>Certifications & Trainings</h2>
           </Reveal>
+
           <div className="timeline">
             {certifications.map((cert, index) => (
               <Reveal key={index} delay={index * 100} className="timeline-item">
                 <div className="experience-card">
                   <div className="exp-header">
                     <h3>{cert.title}</h3>
-                    <span className="company">@ {cert.issuer}</span>
+
+                    <span className={`company ${cert.issuerClass}`}>
+                      @ {cert.issuer}
+                    </span>
                   </div>
+
                   <ul className="achievements-list">
-                    {cert.details.map((d, i) => (
+                    {cert.details.map((detail, i) => (
                       <li key={i} className="achievement-row">
-                        <span className={`chip ${d.chip}`}>{d.tag}</span>
-                        <span className="achievement-text">{d.text}</span>
+                        <ChipButton tag={detail.tag} chipClass={detail.chip} />
+                        <span className="achievement-text">{detail.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -857,7 +990,12 @@ const App = () => {
       {showBackToTop && (
         <button
           className="back-to-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
           aria-label="Back to top"
         >
           <ArrowUpIcon />
