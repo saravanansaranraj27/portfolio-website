@@ -241,7 +241,7 @@ const App = () => {
     name: "Saran Raj Saravanan",
     title:
       "Java Full Stack Developer | Spring Boot | React.js | Python Automation",
-    location: "Chennai, India",
+    location: "Dindigul, India",
     email: "ssaranraj15102021@gmail.com",
     phone: "+91 75488 62252",
     linkedin: "https://linkedin.com/in/saran-raj-saravanan",
