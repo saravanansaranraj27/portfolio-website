@@ -112,7 +112,7 @@ You can view or download my latest resume directly from the portfolio or via the
 
 ## 👨‍💻 About Me
 
-I am a **Java Full Stack Developer** based in Chennai, India, with expertise in building scalable web applications using **Spring Boot**, **React.js**, and **Python Automation**. I have recently completed my M.B.A. in Systems Management and am currently open to new opportunities where I can leverage my technical skills and strategic management insights.
+I am a **Java Full Stack Developer** based in Dindigul, India, with expertise in building scalable web applications using **Spring Boot**, **React.js**, and **Python Automation**. I have recently completed my M.B.A. in Systems Management and am currently open to new opportunities where I can leverage my technical skills and strategic management insights.
 
 - **Backend:** Spring Boot, Microservices, FastAPI, REST APIs, Go
 - **Frontend:** React.js, Angular, HTML5, CSS3
