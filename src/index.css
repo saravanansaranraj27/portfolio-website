@@ -334,6 +334,10 @@ a {
   font-size: 1.1rem;
   letter-spacing: -0.01em;
   color: var(--name-color);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .topbar-actions {

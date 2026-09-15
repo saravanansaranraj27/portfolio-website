@@ -595,6 +595,13 @@ const App = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   if (isLoading) {
     return <PageLoader />;
   }
@@ -603,7 +610,14 @@ const App = () => {
     <div className="app-container">
       <div className="topbar">
         <div className="topbar-inner">
-          <span className="brand">{personalInfo.name}</span>
+          <button
+            type="button"
+            className="brand"
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+          >
+            {personalInfo.name}
+          </button>
 
           <nav className="desktop-nav">
             {navLinks.map((link) => (
@@ -989,12 +1003,7 @@ const App = () => {
       {showBackToTop && (
         <button
           className="back-to-top"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            })
-          }
+          onClick={scrollToTop}
           aria-label="Back to top"
         >
           <ArrowUpIcon />
