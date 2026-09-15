@@ -1189,34 +1189,21 @@ a {
   flex-shrink: 0;
 }
 
-.project-link.link-code {
+.project-link.link-code,
+.project-link.link-live {
   background: var(--github-button-bg);
   border: 1px solid var(--github-button-bg);
   color: var(--github-button-text);
   box-shadow: 0 8px 18px -10px var(--github-button-bg);
 }
 
-.project-link.link-code:hover {
+.project-link.link-code:hover,
+.project-link.link-live:hover {
   background: var(--github-button-bg);
   border-color: var(--github-button-bg);
   color: var(--github-button-text);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px -8px var(--github-button-bg);
-}
-
-.project-link.link-live {
-  background: var(--teal-gradient);
-  border: 1px solid var(--teal);
-  color: var(--teal-contrast);
-  box-shadow: 0 8px 18px -10px var(--teal);
-}
-
-.project-link.link-live:hover {
-  background: var(--teal-gradient);
-  border-color: var(--teal);
-  color: var(--teal-contrast);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -8px var(--teal);
 }
 
 .project-link:active {
