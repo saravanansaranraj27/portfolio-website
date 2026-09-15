@@ -1000,16 +1000,16 @@ a {
 .chip-automation {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--teal) 85%, white) 0%,
-    var(--teal) 55%,
-    color-mix(in srgb, var(--teal) 78%, black) 100%
+    color-mix(in srgb, #2ecc71 85%, white) 0%,
+    #2ecc71 55%,
+    color-mix(in srgb, #2ecc71 78%, black) 100%
   );
-  border: 1px solid var(--teal);
-  box-shadow: 0 6px 14px -8px var(--teal);
+  border: 1px solid #2ecc71;
+  box-shadow: 0 6px 14px -8px #2ecc71;
 }
 
 .chip-automation:hover {
-  box-shadow: 0 10px 20px -8px var(--teal);
+  box-shadow: 0 10px 20px -8px #2ecc71;
 }
 
 .chip-rca {

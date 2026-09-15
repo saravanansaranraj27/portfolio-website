@@ -61,12 +61,12 @@ const TECH_META = {
   AWS: { color: "#ff9900", Icon: CloudIcon },
   "Microsoft Azure": { color: "#0078d4", Icon: CloudIcon },
   Git: { color: "#f05032", Icon: GitBranchIcon },
-  Kibana: { color: "#00bfb3", Icon: ActivityIcon },
+  Kibana: { color: "#E01563", Icon: ActivityIcon },
   "GitHub Copilot": { color: "#8957e5", Icon: SparkleIcon },
   "Incident Management": { color: "#f2665a", Icon: AlertIcon },
   "Root Cause Analysis": { color: "#f5a623", Icon: TargetIcon },
-  Automation: { color: "#2dd4bf", Icon: BoltIcon },
-  Agile: { color: "#22c55e", Icon: RefreshIcon },
+  Automation: { color: "#2ECC71", Icon: BoltIcon },
+  Agile: { color: "#4E1C66", Icon: RefreshIcon },
   JWT: { color: "#d63aff", Icon: KeyIcon },
   Vite: { color: "#8a67f8", Icon: BoltIcon },
   RxJS: { color: "#b7178c", Icon: WaveIcon },
@@ -231,7 +231,7 @@ const App = () => {
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Education", href: "#education" },
-    { name: "Certifications", href: "#certifications" },
+    { name: "Badges", href: "#certifications" },
   ];
 
   const skills = [
