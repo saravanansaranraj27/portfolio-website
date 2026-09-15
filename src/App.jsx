@@ -44,7 +44,7 @@ import "./index.css";
 const TECH_META = {
   Java: { color: "#f8981d", Icon: CodeIcon },
   Python: { color: "#3776ab", Icon: CodeIcon },
-  JavaScript: { color: "#e8c547", Icon: CodeIcon },
+  JavaScript: { color: "#e64a19", Icon: CodeIcon },
   TypeScript: { color: "#3178c6", Icon: CodeIcon },
   Go: { color: "#00add8", Icon: CodeIcon },
   "Spring Boot": { color: "#6db33f", Icon: ServerIcon },
@@ -52,8 +52,7 @@ const TECH_META = {
   "REST APIs": { color: "#a78bfa", Icon: PlugIcon },
   Microservices: { color: "#8b5cf6", Icon: PlugIcon },
   FastAPI: { color: "#059669", Icon: ServerIcon },
-  "React.js": { color: "#58c4dc", Icon: WindowIcon },
-  React: { color: "#58c4dc", Icon: WindowIcon },
+  React: { color: "#ff4a5a", Icon: WindowIcon },
   Angular: { color: "#dd0031", Icon: WindowIcon },
   HTML5: { color: "#e34f26", Icon: WindowIcon },
   CSS3: { color: "#2f8fce", Icon: WindowIcon },
@@ -100,7 +99,7 @@ const TechButton = ({ label }) => {
   return (
     <button
       type="button"
-      className={`tag-btn ${label === "React.js" || label === "React" ? "react-tag" : ""}`}
+      className={`tag-btn ${label === "React" ? "react-tag" : ""}`}
       style={{ "--tag-color": color }}
     >
       <Icon />
@@ -120,7 +119,7 @@ const TechBadgeButton = ({ label }) => {
   return (
     <button
       type="button"
-      className={`tech-badge-btn ${label === "React.js" || label === "React" ? "react-tag" : ""}`}
+      className={`tech-badge-btn ${label === "React" ? "react-tag" : ""}`}
       style={{ "--tag-color": color }}
     >
       <Icon />
@@ -218,7 +217,7 @@ const App = () => {
   const personalInfo = {
     name: "Saran Raj Saravanan",
     title:
-      "Java Full Stack Developer | Spring Boot | React.js | Python Automation",
+      "Java Full Stack Developer | Spring Boot | React | Python Automation",
     location: "Dindigul, India",
     email: "ssaranraj15102021@gmail.com",
     phone: "+91 75488 62252",
@@ -252,7 +251,7 @@ const App = () => {
     },
     {
       category: "Frontend",
-      items: ["React.js", "Angular", "HTML5", "CSS3"],
+      items: ["React", "Angular", "HTML5", "CSS3"],
     },
     {
       category: "Databases",
@@ -782,10 +781,10 @@ const App = () => {
               <p className="summary-text">
                 Java Full Stack Developer with 1.5+ years of experience across
                 application development, systems analysis, and automation.
-                Strong in Spring Boot, React.js, REST APIs, and Python scripting
-                to improve system reliability, performance, and scalability,
-                with a track record in incident management, Root Cause Analysis,
-                and DevOps collaboration on AWS and Microsoft Azure.
+                Strong in Spring Boot, React, REST APIs, and Python scripting to
+                improve system reliability, performance, and scalability, with a
+                track record in incident management, Root Cause Analysis, and
+                DevOps collaboration on AWS and Microsoft Azure.
               </p>
             </div>
           </Reveal>

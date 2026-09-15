@@ -7,13 +7,14 @@
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --nav-height: 80px;
 
-  --react-brand: #58c4dc;
-  --react-brand-dark: #149eca;
+  --react-brand: #ff4a5a;
+  --react-brand-dark: #ff4a5a;
   --gmail-red: #ea4335;
   --maps-red: #ea4335;
   --dindigul-yellow: #fbbc04;
   --green-button: #188038;
   --contacts-blue: #4285f4;
+  --linkedin-blue: #0a66c2;
 }
 
 html {
@@ -39,7 +40,7 @@ html[data-theme="dark"] {
   --red-soft: #f2665a20;
   --purple: #8b5cf6;
   --purple-soft: #8b5cf620;
-  --react-color: #58c4dc;
+  --react-color: #ff4a5a;
   --name-color: #2dd4bf;
   --github-color: #2dd4bf;
   --github-button-bg: #ffffff;
@@ -75,7 +76,7 @@ html[data-theme="light"] {
   --red-soft: #c23f3314;
   --purple: #8b5cf6;
   --purple-soft: #8b5cf620;
-  --react-color: #58c4dc;
+  --react-color: #ff4a5a;
   --name-color: #000000;
   --github-color: #0f9e8e;
   --github-button-bg: #000000;
@@ -120,7 +121,7 @@ html[data-theme="light"] {
     color-mix(in srgb, #0a66c2 78%, black) 100%
   );
 
-  --react-gradient: #58c4dc;
+  --react-gradient: #ff4a5a;
 
   --gmail-gradient: linear-gradient(
     135deg,
@@ -148,6 +149,13 @@ html[data-theme="light"] {
     #34a853 0%,
     #188038 55%,
     #137333 100%
+  );
+
+  --client-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, #6138f5 85%, white) 0%,
+    #6138f5 55%,
+    color-mix(in srgb, #6138f5 78%, black) 100%
   );
 }
 
@@ -813,7 +821,7 @@ a {
   flex-shrink: 0;
 }
 
-.tag-btn[style*="#58c4dc"] {
+.tag-btn[style*="#ff4a5a"] {
   background: var(--react-gradient);
   border-color: var(--react-brand);
 }
@@ -1022,16 +1030,16 @@ a {
 .chip-team {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--purple) 85%, white) 0%,
-    var(--purple) 55%,
-    color-mix(in srgb, var(--purple) 78%, black) 100%
+    color-mix(in srgb, var(--linkedin-blue) 85%, white) 0%,
+    var(--linkedin-blue) 55%,
+    color-mix(in srgb, var(--linkedin-blue) 78%, black) 100%
   );
-  border: 1px solid var(--purple);
-  box-shadow: 0 6px 14px -8px var(--purple);
+  border: 1px solid var(--linkedin-blue);
+  box-shadow: 0 6px 14px -8px var(--linkedin-blue);
 }
 
 .chip-team:hover {
-  box-shadow: 0 10px 20px -8px var(--purple);
+  box-shadow: 0 10px 20px -8px var(--linkedin-blue);
 }
 
 .achievement-text {
@@ -1067,6 +1075,9 @@ a {
   padding: 1px;
   background: linear-gradient(135deg, transparent, var(--teal), transparent);
   -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -1145,7 +1156,7 @@ a {
   flex-shrink: 0;
 }
 
-.tech-badge-btn[style*="#58c4dc"] {
+.tech-badge-btn[style*="#ff4a5a"] {
   background: var(--react-gradient);
   border-color: var(--react-brand);
 }
@@ -1297,12 +1308,12 @@ footer {
   letter-spacing: 0.04em;
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid #fdb913;
+  border: 1px solid #6138f5;
   color: var(--tag-font);
-  background: var(--gold-gradient);
+  background: var(--client-gradient);
   text-transform: uppercase;
   cursor: default;
-  box-shadow: 0 8px 18px -10px #fdb913;
+  box-shadow: 0 8px 18px -10px #6138f5;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -1317,7 +1328,7 @@ footer {
 
 .client-tag:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -8px #fdb913;
+  box-shadow: 0 10px 20px -8px #6138f5;
 }
 
 @media (max-width: 600px) {
