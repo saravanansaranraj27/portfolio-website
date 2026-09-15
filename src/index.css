@@ -40,21 +40,24 @@ html[data-theme="dark"] {
   --red-soft: #f2665a20;
   --purple: #8b5cf6;
   --purple-soft: #8b5cf620;
+
   --react-color: #ff4a5a;
   --name-color: #2dd4bf;
   --github-color: #2dd4bf;
   --github-button-bg: #ffffff;
   --github-button-text: #000000;
-  --mepco-color: #f5a623;
-  --bharathidasan-color: #8b5cf6;
+  --mepco-color: #ffd666;
+  --bharathidasan-color: #c4b5fd;
   --microsoft-color: #f14f21;
   --capgemini-color: #17abda;
+  --accent-heading: #2dd4bf;
   --shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.45);
   --hero-glow-1: #f5a62312;
   --hero-glow-2: #2dd4bf14;
   --skeleton-base: #1a2236;
   --skeleton-highlight: #232c42;
   --tag-font: #ffffff;
+  --date-color: #e7ecf6;
 }
 
 html[data-theme="light"] {
@@ -81,16 +84,18 @@ html[data-theme="light"] {
   --github-color: #0f9e8e;
   --github-button-bg: #000000;
   --github-button-text: #ffffff;
-  --mepco-color: #f5a623;
-  --bharathidasan-color: #8b5cf6;
-  --microsoft-color: #f14f21;
-  --capgemini-color: #17abda;
+  --mepco-color: #b8860b;
+  --bharathidasan-color: #4c1d95;
+  --microsoft-color: #b83815;
+  --capgemini-color: #005585;
+  --accent-heading: #0e8a7d;
   --shadow: 0 8px 24px -10px rgba(20, 24, 40, 0.12);
   --hero-glow-1: #b5760f0d;
   --hero-glow-2: #0f9e8e0d;
   --skeleton-base: #eef1f6;
   --skeleton-highlight: #dfe3ec;
   --tag-font: #ffffff;
+  --date-color: #4b5670;
 }
 
 * {
@@ -328,16 +333,30 @@ a {
   justify-content: space-between;
 }
 
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .brand {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: normal;
   color: var(--name-color);
   background: none;
   border: none;
-  padding: 0;
+  padding: 8px 16px;
   cursor: pointer;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.brand:hover {
+  color: var(--teal);
+  background-color: var(--teal-soft);
+  transform: translateY(-1px);
 }
 
 .topbar-actions {
@@ -361,7 +380,7 @@ a {
 .nav-link {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--name-color);
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 8px;
@@ -370,7 +389,7 @@ a {
 }
 
 .nav-link.active {
-  color: var(--text-muted);
+  color: var(--name-color);
   background-color: transparent;
   transform: none;
 }
@@ -460,7 +479,7 @@ a {
   display: block;
   padding: 12px 16px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--name-color);
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -776,7 +795,7 @@ a {
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--teal);
+  color: var(--accent-heading);
   margin-bottom: 14px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -896,16 +915,9 @@ a {
 }
 
 .company {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
-}
-
-.experience-company {
-  color: var(--capgemini-color);
-}
-
-.education-company {
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .bharathidasan-company {
@@ -916,22 +928,18 @@ a {
   color: var(--mepco-color);
 }
 
-.certification-company {
-  color: var(--text-muted);
-}
-
 .microsoft-company {
   color: var(--microsoft-color);
 }
 
-.github-company {
-  color: var(--github-color);
+.capgemini-company {
+  color: var(--capgemini-color);
 }
 
 .date {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
-  color: var(--teal);
+  color: var(--accent-heading);
   margin-left: auto;
 }
 
@@ -1343,6 +1351,10 @@ footer {
   .mobile-menu-toggle {
     width: 42px;
     height: 42px;
+  }
+
+  .nav-group {
+    gap: 12px;
   }
 }
 

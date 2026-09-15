@@ -508,8 +508,8 @@ const App = () => {
     },
     {
       title: "GitHub Copilot Training",
-      issuer: "GitHub",
-      issuerClass: "github-company",
+      issuer: "Capgemini",
+      issuerClass: "capgemini-company",
       details: [
         {
           tag: "AI TOOLS",
@@ -610,28 +610,30 @@ const App = () => {
     <div className="app-container">
       <div className="topbar">
         <div className="topbar-inner">
-          <button
-            type="button"
-            className="brand"
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-          >
-            {personalInfo.name}
-          </button>
+          <div className="nav-group">
+            <button
+              type="button"
+              className="brand"
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+            >
+              Home
+            </button>
 
-          <nav className="desktop-nav">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`nav-link ${
-                  activeSection === link.href.substring(1) ? "active" : ""
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+            <nav className="desktop-nav">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`nav-link ${
+                    activeSection === link.href.substring(1) ? "active" : ""
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+          </div>
 
           <div className="topbar-actions">
             <button
@@ -843,7 +845,7 @@ const App = () => {
                     <div className="exp-header">
                       <h3>{exp.role}</h3>
 
-                      <span className="company experience-company">
+                      <span className="company capgemini-company">
                         @ {exp.company}
                       </span>
 
