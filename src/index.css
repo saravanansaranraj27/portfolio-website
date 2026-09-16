@@ -1369,3 +1369,7 @@ footer {
   border-color: var(--react-brand);
   color: #ffffff;
 }
+
+section[id] {
+  scroll-margin-top: 80px;
+}

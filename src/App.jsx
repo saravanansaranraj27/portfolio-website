@@ -591,10 +591,6 @@ const App = () => {
     }
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -667,7 +663,19 @@ const App = () => {
                 className={`mobile-nav-link ${
                   activeSection === link.href.substring(1) ? "active" : ""
                 }`}
-                onClick={closeMobileMenu}
+                onClick={(event) => {
+                  event.preventDefault();
+
+                  const sectionId = link.href.substring(1);
+
+                  setActiveSection(sectionId);
+                  setIsMobileMenuOpen(false);
+
+                  document.getElementById(sectionId)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
               >
                 {link.name}
               </a>
