@@ -44,6 +44,8 @@ import "./index.css";
 const TECH_META = {
   Java: { color: "#f8981d", Icon: CodeIcon },
   Python: { color: "#3776ab", Icon: CodeIcon },
+  CSV: { color: "#2ECC71", Icon: FileTextIcon },
+  "Windows CLI": { color: "#0078d6", Icon: WindowIcon },
   JavaScript: { color: "#e64a19", Icon: CodeIcon },
   TypeScript: { color: "#3178c6", Icon: CodeIcon },
   Go: { color: "#00add8", Icon: CodeIcon },
@@ -428,6 +430,19 @@ const App = () => {
         {
           label: "Code",
           url: "https://github.com/saravanansaranraj27/task-flow",
+          type: "code",
+        },
+      ],
+    },
+    {
+      title: "Python Automation Scripts",
+      tech: ["Python", "CSV", "Windows CLI"],
+      description:
+        "A suite of Windows-focused CLI utilities for system management. Features include safe system shutdowns with configurable delays, 5-step network diagnostics (ping, trace route, IP config) with CSV logging, and a batch application launcher with profile-aware Chrome execution.",
+      links: [
+        {
+          label: "Code",
+          url: "https://github.com/saravanansaranraj27/python-automation-scripts",
           type: "code",
         },
       ],
